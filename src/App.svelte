@@ -12,12 +12,11 @@
 </script>
 
 <Router>
-  <nav>
+  <nav class="navbar">
     <Link to="/">home</Link>
     <Link to="/about">about</Link>
     <Link to="/products">products</Link>
-    <Link to="/products/5">prod 5</Link>
-    <Link to="/products/7">prod 7</Link>
+
   </nav>
   <Route path="/" component={Home} />
   <Route path="/login" component={Login} />
