@@ -1,14 +1,17 @@
 <script>
   // cart
   import CartButton from "../Cart/CartButton.svelte";
-  // @TODO global store
+  import globalStore from "../../stores/globalStore";
   import { link } from "svelte-routing";
+  let openSidebar = globalStore.toggleItem;
 </script>
 
 <nav class="navbar">
   <div class="nav-center">
     <!-- sidebar toggle -->
-    <button class="btn-sidebar-toggle">
+    <button
+      class="btn-sidebar-toggle"
+      on:click={() => openSidebar('sidebar', true)}>
       <i class="fas fa-bars" />
     </button>
     <!-- logo -->
