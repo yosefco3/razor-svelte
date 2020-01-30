@@ -10,11 +10,6 @@
   export let price = "";
   export let amount = "";
 
-  // the next props aren't in use here , but could be :
-  export let description = "";
-  export let featured = "";
-  export let created_at = "";
-  export let updated_at = "";
   //   import cart methods
 </script>
 
