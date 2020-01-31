@@ -3,6 +3,8 @@
   import { link } from "svelte-routing";
   import globalStore from "../../stores/globalStore";
   import { fly, fade } from "svelte/transition";
+  import LoginLink from "../LoginLink.svelte";
+
   let closeSidebar = globalStore.toggleItem;
 </script>
 
@@ -30,6 +32,9 @@
           </a>
         </li>
       {/each}
+      <li>
+        <LoginLink />
+      </li>
 
     </ul>
   </div>
