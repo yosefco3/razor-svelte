@@ -1,15 +1,28 @@
 <script>
+  import loginUser from "../strapi/loginUser";
+  import registerUser from "../strapi/registerUser";
+
   let email = "";
   let password = "";
-  let username = "default username";
+  let username = "default user";
 
   let isMember = true;
 
   $: isEmpty = !email || !password || !username;
+  // toggle member
+  function toggleMember() {
+    isMember = !isMember;
+    isMember ? (username = "default user") : (username = "");
+  }
+  // handle submit
+  async function handleSubmit() {
+    let user;
+    isMember
+      ? (user = await loginUser({ email, password }))
+      : (user = await registerUser({ email, password, username }));
 
-  function toggleMember() {}
-
-  async function handleSubmit() {}
+    user ? "" : "";
+  }
 </script>
 
 <section class="form">
