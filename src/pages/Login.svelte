@@ -1,14 +1,17 @@
 <script>
   import loginUser from "../strapi/loginUser";
   import registerUser from "../strapi/registerUser";
+  import { navigate } from "svelte-routing";
+  import globalStore from "../stores/globalStore";
 
   let email = "";
   let password = "";
   let username = "default user";
 
   let isMember = true;
+  // add alert
 
-  $: isEmpty = !email || !password || !username;
+  $: isEmpty = !email || !password || !username || $globalStore.alert;
   // toggle member
   function toggleMember() {
     isMember = !isMember;
@@ -16,12 +19,24 @@
   }
   // handle submit
   async function handleSubmit() {
+    // add alert
+    globalStore.toggleItem("alert", true, "loading data... please wait");
     let user;
     isMember
       ? (user = await loginUser({ email, password }))
       : (user = await registerUser({ email, password, username }));
 
-    user ? "" : "";
+    if (user) {
+      navigate("/products");
+      globalStore.toggleItem("alert", true, "welcome to shopping madness!");
+      return;
+    }
+    globalStore.toggleItem(
+      "alert",
+      true,
+      "there was an error! please try again",
+      true
+    );
   }
 </script>
 
