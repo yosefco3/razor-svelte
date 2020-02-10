@@ -1,11 +1,13 @@
 import { writable } from 'svelte/store'
-import url from '../strapi/URL'
+// import url from '../strapi/URL'
 import getProducts from '../strapi/getProducts'
 
 let flattenProducts = data => {
     return data.map(item => {
-        item.image = `${url}${item.image.url}`
-        return item
+        let image = item.image.url;
+        // console.log(image)
+        // item.image = `${url}${item.image.url}`
+        return { ...item, image }
     })
 }
 
