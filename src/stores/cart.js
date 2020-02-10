@@ -5,10 +5,8 @@ import { writable, derived } from 'svelte/store'
 const cart = writable(getStorageCart())
 
 // the total price of the items : 
-export const cartTotal = derived(cart, $cart => $cart.reduce(
-    (acc, curr) => acc + curr.price * curr.amount,
-    0
-).toFixed(2))
+export const cartTotal = derived(cart, $cart => parseFloat($cart.reduce(
+    (acc, curr) => acc + curr.price * curr.amount, 0).toFixed(2)))
 
 // local functions
 const remove = (id, items) => items.filter(item => item.id !== id)

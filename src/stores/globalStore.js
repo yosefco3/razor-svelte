@@ -4,7 +4,7 @@ const globalStore = writable({
     sidebar: false,
     cart: false,
     alert: false,
-    alertText: 'default alert',
+    alertText: '',
     alertDanger: false
 })
 
